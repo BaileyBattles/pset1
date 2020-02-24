@@ -235,7 +235,25 @@ def bellman_backup(policy, stateSpace, state, value_fn):
         if possibilities[i] == maximum:
             return possibilities[i][1]
 
-rewards = [(3, 2, 1), (5, 2, 10), (0, 4, -100), (1, 4, -100), (2, 4, -100), (3, 4, -100), (4, 4, -100), (5, 4, -100)]
-stateSpace = StateSpace(L, H, [(2,1), (2,2), (4,1), (4,2)], rewards)
-value_fn, policy = stateSpace.valueFunction()
-policy.displayPolicy(stateSpace)
+gamma = 0.96
+gammas = [0.5, 0.7, 0.96]
+p_es = [0.01, 0.06, 0.1, 0.2]
+rewards = [(3, 2, 10), (5, 2, 100), (0, 4, -100), (1, 4, -100), (2, 4, -100), \
+           (10, 11, 200), (11, 4, 200), (14, 14, -100), (8, 8, 32), (18, 18, 150), \
+           (16, 3, 44), (15, 15, 100), (0, 9, 280), (1, 18, 200), (1, 19, 250)]
+stateSpace = StateSpace(20, 20, [(2,1), (2,2), (4,1), (4,4)], rewards)
+for g in gammas:
+    for p in p_es:
+        gamma = g
+        p_e = p
+        
+        value_fn, policy = stateSpace.valueFunction()
+        path, trajectory, total_reward, expected_reward = policy.getPathAndRewardFrom(2, 0, stateSpace)
+        
+        print(f'Gamma = {gamma}')
+        print(f'p_e = {p_e}')
+        policy.displayPolicy(stateSpace)
+        for row in trajectory:
+            print(row)
+        print(f'Total Reward = {total_reward}')
+        print(f'Expected Reward = {expected_reward}')
