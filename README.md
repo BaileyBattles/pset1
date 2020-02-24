@@ -1,9 +1,9 @@
 # pset1
 ## Step 1.
-Clone the repository.
+Clone the repository. `git clone https://github.com/BaileyBattles/pset1.git`
 
 ## Step 2.
-cd into the repository
+cd into the repository `cd pset1`
 
 ## Step 3.
 Run
