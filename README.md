@@ -1,4 +1,7 @@
 # pset1
+## Contributors
+Bailey Battles, Calvin Yung, Anthony Lopilato
+
 ## Step 1.
 Clone the repository. `git clone https://github.com/BaileyBattles/pset1.git`
 
